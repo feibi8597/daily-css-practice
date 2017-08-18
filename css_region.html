@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>css region</title>
+	<style>
+		.main-content{
+		  -webkit-flow-into:content; /* flow everything into 
+		                        the named-region content */
+		}
+
+		.region{
+		  -webkit-flow-from:content; /* let the content from the 
+		                        named-region content into 
+		                        divs with this class */
+		  height:90px;
+		}
+		.red{
+		  background:red;
+		}
+		.blue{
+		  background:blue;
+		}
+	</style>
+</head>
+<body>
+	<div class="region red">
+	</div>
+	<div class="region blue">
+	</div>
+
+	<!-- Content -->
+	<div class="main-content">
+	  <p>Lorem ipsum dolor sit amet.</p>
+	  <p>Repellendus voluptates fugit molestiae sint?</p>
+	  <p>Magni consequatur officia est! Alias.</p>
+	  <p>Unde soluta consectetur explicabo iste!</p>
+	  <p>Praesentium architecto asperiores repudiandae vero.</p>
+	</div>
+</body>
+</html>

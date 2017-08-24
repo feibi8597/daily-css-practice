@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>scrolling video</title>
+	<script
+	  src="https://code.jquery.com/jquery-3.2.1.min.js"
+	  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	  crossorigin="anonymous"></script>
+	<style type="text/css">
+		html, body {
+			height: 100%;
+		}
+		body {
+			background: #222;
+		}
+		.video-container {
+			overflow: auto;
+			margin: 0 auto;
+			width: 600px;
+			position: relative;
+			top: 50%;
+			transform: translateY(-50%);
+		}
+		video {
+			width: 100%;
+		}
+	</style>
+</head>
+<body>
+	<div class="video-container">
+		<video autobuffer preload loop autoplay controls>
+			<source src="https://img.uzer.me/uzvideo/uzerme-video.mp4" type="video/mp4">
+		</video>
+	</div>
+</body>
+<script type="text/javascript">
+	var video = $('video')[0];
+
+	// video.pause();
+
+	// window.onscroll = function(){
+	//     video.pause();
+	// };
+
+	var vidCurTime;
+	function scrollVid() {  
+	  window.addEventListener('DOMMouseScroll', scrolling());
+	  window.addEventListener('mousewheel', scrolling());
+	  
+	  function scrolling() {
+	    return function(e) {
+	      e.preventDefault();
+	      var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
+	      if (delta < 0) {
+	        vidCurTime = 0.1;
+	      } else {
+	        vidCurTime = -0.1;
+	      }
+	      video.currentTime += vidCurTime;
+	    } 
+	  }
+	}
+
+	$(window).scroll(scrollVid);
+	$('video').on('loadedmetadata', scrollVid);
+</script>
+</html>
